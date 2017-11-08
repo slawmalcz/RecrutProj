@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp.Model;
+using WpfApp.ModeViev;
 
 namespace WpfApp
 {
@@ -73,25 +74,8 @@ namespace WpfApp
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-
-            da.SelectCommand = new SqlCommand(@"SELECT * FROM ViewWorkersProgres ", new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\MyDatabase.mdf; Integrated Security = True"));
-            da.Fill(ds, "ViewWorkersProgres");
-            dt = ds.Tables["ViewWorkersProgres"];
-
-            NeuralLayer neuralLayer = new NeuralLayer();
-            MessageBox.Show(neuralLayer.GetNeuron(0).generateWeightView());
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                Worker temp = new Worker(dr);
-                MessageBox.Show(temp.ToString());
-                neuralLayer.GetNeuron(0).generateOutput(temp.oceny);
-                neuralLayer.GetNeuron(0).DeltaRegule(temp.oceny);
-                neuralLayer.GetNeuron(0).generateOutput(temp.oceny);
-            }
+            new WorkerOfTheMonth();
         }
     }
 }
+ 

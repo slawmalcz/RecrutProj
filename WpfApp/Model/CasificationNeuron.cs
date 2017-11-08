@@ -14,11 +14,12 @@ namespace WpfApp.Model
 
         public CasificationNeuron()
         {
-            Random rngGod = new Random();
+            System.Threading.Thread.Sleep(15);
             weight = new Double[Worker.parameters];
+            Random rngGod = new Random();
             for(int i=0;i<Worker.parameters;i++)
             {
-                weight[i] = rngGod.NextDouble();
+                weight[i] = (rngGod.NextDouble() * 2) - 1.0;
             }
         }
 
@@ -27,22 +28,21 @@ namespace WpfApp.Model
             this.weight = sendToNeuron;
         }
 
-        public double generateOutput(Double [] input)
+        public double generateOutput(Worker worker)
         {
             double output = 0;
             for (int i = 0; i < Worker.parameters; i++)
             {
-                output = weight[i] * input[i];
+                output = weight[i] * worker.oceny[i];
             }
-            MessageBox.Show(output.ToString());
             return output;
         }
 
-        public void DeltaRegule(Double[] input)
+        public void DeltaRegule(Worker worker)
         {
             for(int i = 0; i < Worker.parameters; i++)
             {
-                weight[i] = weight[i] + (accelerationRate * (input[i] - weight[i]));
+                weight[i] = weight[i] + (accelerationRate * (worker.oceny[i] - weight[i]));
             }
         }
 

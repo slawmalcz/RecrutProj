@@ -15,9 +15,12 @@ namespace WpfApp.Model
                 return 7;
             }
         }
-        private int ID;
-        private string Imie;
-        private string Nazwisko;
+        public int ID {
+            get;
+            private set;
+        }
+        protected string Imie;
+        protected string Nazwisko;
         public Double[] oceny = new Double[parameters];
 
         public Worker(DataRow dataRow)
@@ -33,14 +36,20 @@ namespace WpfApp.Model
             this.oceny[5] = Int32.Parse(dataRow["Spoznienia"].ToString());
             this.oceny[6] = Int32.Parse(dataRow["Blendow_w_kodzie"].ToString());
         }
+        protected Worker(Worker worker)
+        {
+            this.ID = worker.ID;
+            this.Imie = worker.Imie;
+            this.Nazwisko = worker.Nazwisko;
+            this.oceny = worker.oceny;
+        }
 
-        public String ToString()
+        public new String ToString()
         {
             return "" +
                 "Id = " + this.ID + " " +
                 "Imie = " + this.Imie + " " +
-                "Nazwisko = " + this.Nazwisko + " " +
-                "Oceny = " + this.oceny.ToString();
+                "Nazwisko = " + this.Nazwisko + " ";
         }
     }
 }

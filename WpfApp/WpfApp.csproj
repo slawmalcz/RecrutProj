@@ -83,9 +83,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Candidate.cs" />
     <Compile Include="Model\CasificationNeuron.cs" />
     <Compile Include="Model\NeuralLayer.cs" />
+    <Compile Include="Model\SupervisedNeuralLayer.cs" />
+    <Compile Include="Model\UnsupervisedNeuralLayer.cs" />
     <Compile Include="Model\Worker.cs" />
+    <Compile Include="ModeViev\WorkerOfTheMonth.cs" />
     <Compile Include="PracownicyDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

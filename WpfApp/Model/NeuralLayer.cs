@@ -11,27 +11,26 @@ namespace WpfApp.Model
 {
     class NeuralLayer
     {
-        private const int neuronNum = 10;
+        public static int neuronNum = 5;
         private CasificationNeuron[] mainLayer = new CasificationNeuron[neuronNum];
 
-        public NeuralLayer()
+        public NeuralLayer(String initiateFileName)
         {
             string directory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string filePath = Path.Combine(directory, "weightInit.txt");
+            string filePath = Path.Combine(directory, initiateFileName);
             if (!File.Exists(filePath)){
-                using (StreamWriter writetext = new StreamWriter("weightInit.txt"))
+                using (StreamWriter writetext = new StreamWriter(initiateFileName))
                 {
                     for (int i = 0; i < neuronNum; i++)
                     {
                         mainLayer[i] = new CasificationNeuron();
-                        MessageBox.Show(mainLayer[i].generateWeightView());
                         writetext.WriteLine(mainLayer[i].generateWeightView());
                     }
                 }
             }
             else
             {
-                using (StreamReader readtext = new StreamReader("weightInit.txt"))
+                using (StreamReader readtext = new StreamReader(initiateFileName))
                 {
                     for (int i = 0; i < neuronNum; i++)
                     {
@@ -48,7 +47,7 @@ namespace WpfApp.Model
 
         }
 
-        public CasificationNeuron GetNeuron(int index)
+        protected CasificationNeuron GetNeuron(int index)
         {
             return mainLayer[index];
         }
