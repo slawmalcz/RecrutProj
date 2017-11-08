@@ -19,22 +19,46 @@ namespace WpfApp.ModeViev
         private NeuralLayer unsupervisedNeuralNetwork;
 
         private List<Candidate> candidates = new List<Candidate>();
+        private StackPanel stackPanel;
 
+        private static WorkerOfTheMonth instance;
 
-
-        public WorkerOfTheMonth()
+        public static WorkerOfTheMonth getInstance(MainWindow mainWindow)
         {
+            if (instance == null)
+            {
+                instance = new WorkerOfTheMonth(mainWindow);
+            }
+            return instance;
+
+        }
+        public static WorkerOfTheMonth getInstance()
+        {
+            return instance;
+        }
+
+        private WorkerOfTheMonth(MainWindow mainWindow)
+        {
+            try
+            {
+                stackPanel = mainWindow.candidatesStackPanel;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             //Ladowanie danuch do tabeli
             workersEwaluationData = LoadData();
             //Tworzenie sieci neuronowej
             LoadNeuralNetwork();
             //odpytywanie danych
             candidates = supervisedNeuralNetwork.AskPreNeuralForCandidate(workersEwaluationData);
-            unsupervisedNeuralNetwork.AskPreNeuralForCandidate(workersEwaluationData);
-            MessageBox.Show(
-                supervisedNeuralNetwork.ToString+
-                "\n"+
-                unsupervisedNeuralNetwork.ToString);
+            unsupervisedChoosen =  unsupervisedNeuralNetwork.AskPreNeuralForCandidate(workersEwaluationData)[0];
+        }
+
+        public Candidate getWorkerOfTheMonth()
+        {
+            return new FinalNeuron(superviverChoosen.oceny, unsupervisedChoosen.oceny).AskPreNeuralForCandidate(this.LoadData());
         }
 
         private DataTable LoadData()
@@ -67,6 +91,20 @@ namespace WpfApp.ModeViev
         public void FillStackPanel(StackPanel stackPanel)
         {
             FillStackPanel(candidates,stackPanel);
+        }
+
+        // COŚ tam dalej
+
+        private Candidate superviverChoosen;
+        private Candidate unsupervisedChoosen;
+
+        public void setSupervisorChoosen(Candidate candidate)
+        {
+            this.superviverChoosen = candidate;
+            supervisedNeuralNetwork.TeachPreNeural(candidate);
+            MessageBox.Show("I get :" + candidate.ToString());
+            this.stackPanel.Children.Clear();
+
         }
     }
 }

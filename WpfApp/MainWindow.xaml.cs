@@ -24,37 +24,26 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        WorkerOfTheMonth temp;
+
         public MainWindow()
         {
             InitializeComponent();
+            WorkerOfTheMonth temp = WorkerOfTheMonth.getInstance(this);
+            temp.FillStackPanel(candidatesStackPanel);
         }
 
         private void BTNew_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show(WorkerOfTheMonth.getInstance().getWorkerOfTheMonth().ToString());
         }
 
         private void BTSave_Click(object sender, RoutedEventArgs e)
         {
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-
-            da.SelectCommand = new SqlCommand(@"SELECT * FROM ViewWorkersProgres ",new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\MyDatabase.mdf; Integrated Security = True") );
-            da.Fill(ds, "ViewWorkersProgres");
-            dt = ds.Tables["ViewWorkersProgres"];
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                Worker temp = new Worker(dr);
-                MessageBox.Show( temp.ToString());
-            }
         }
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
-            WorkerOfTheMonth temp =  new WorkerOfTheMonth();
-            temp.FillStackPanel(candidatesStackPanel);
         }
     }
 }

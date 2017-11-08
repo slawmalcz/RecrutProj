@@ -8,7 +8,7 @@
              ">
     <Grid>
 
-        <Button Content="Wybierz kandydata" HorizontalAlignment="Left" Margin="342,50,0,0" VerticalAlignment="Top" Width="144"/>
+        <Button Content="Wybierz kandydata" HorizontalAlignment="Left" Margin="342,50,0,0" VerticalAlignment="Top" Width="144" Click="ChooseCandidate_Click"/>
         <ListBox HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Name="ListTable"/>
 
     </Grid>

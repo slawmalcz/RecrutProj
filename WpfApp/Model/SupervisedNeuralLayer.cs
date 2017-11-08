@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,9 +52,22 @@ namespace WpfApp.Model
             return candidates;
         }
 
+        protected override void saveProgres()
+        {
+            using (StreamWriter writetext = new StreamWriter("supervisedNeuralBrain.txt"))
+            {
+                for (int i = 0; i < neuronNum; i++)
+                {
+                    mainLayer[i] = new CasificationNeuron();
+                    writetext.WriteLine(mainLayer[i].generateWeightView());
+                }
+            }
+        }
+
         public override void TeachPreNeural(Candidate candidate)
         {
             this.mainLayer[candidate.GetNeuron()].DeltaRegule(candidate);
+            this.saveProgres();
         }
     }
 }

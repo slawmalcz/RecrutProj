@@ -22,10 +22,18 @@ namespace WpfApp.Viev
     /// </summary>
     public partial class CandidatePreviev : UserControl
     {
+        private Candidate Candidate;
+
         public CandidatePreviev(Candidate candidate)
         {
             InitializeComponent();
+            this.Candidate = candidate;
             ListTable.Items.Add(candidate.PrintOutputForView());
+        }
+
+        private void ChooseCandidate_Click(object sender, RoutedEventArgs e)
+        {
+            WorkerOfTheMonth.getInstance().setSupervisorChoosen(Candidate);
         }
     }
 }

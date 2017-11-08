@@ -52,6 +52,8 @@ namespace WpfApp.Model
 
         }
 
+        protected abstract void saveProgres();
+
         protected CasificationNeuron GetNeuron(int index)
         {
             return mainLayer[index];
