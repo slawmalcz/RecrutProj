@@ -14,7 +14,7 @@ namespace WpfApp.Model
 
         public CasificationNeuron()
         {
-            System.Threading.Thread.Sleep(15);
+            System.Threading.Thread.Sleep(20);
             weight = new Double[Worker.parameters];
             Random rngGod = new Random();
             for(int i=0;i<Worker.parameters;i++)

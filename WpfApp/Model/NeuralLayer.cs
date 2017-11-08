@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -9,10 +10,14 @@ using System.Windows;
 
 namespace WpfApp.Model
 {
-    class NeuralLayer
+    abstract class NeuralLayer
     {
         public static int neuronNum = 5;
-        private CasificationNeuron[] mainLayer = new CasificationNeuron[neuronNum];
+        protected CasificationNeuron[] mainLayer = new CasificationNeuron[neuronNum];
+        public List<Candidate> candidates {
+            get;
+            protected set;
+        }
 
         public NeuralLayer(String initiateFileName)
         {
@@ -51,5 +56,19 @@ namespace WpfApp.Model
         {
             return mainLayer[index];
         }
+
+        public new String ToString {
+            get {
+                String Test = "";
+                foreach (Candidate a in candidates)
+                {
+                    Test += a.ToString() + "\n";
+                }
+                return Test;
+            }
+        }
+
+        public abstract List<Candidate> AskPreNeuralForCandidate(DataTable dt);
+        public abstract void TeachPreNeural(Candidate candidate);
     }
 }

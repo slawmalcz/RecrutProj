@@ -29,29 +29,8 @@ namespace WpfApp
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            WpfApp.PracownicyDataSet pracownicyDataSet = ((WpfApp.PracownicyDataSet)(this.FindResource("pracownicyDataSet")));
-            // Load data into the table Pracownicy. You can modify this code as needed.
-            WpfApp.PracownicyDataSetTableAdapters.PracownicyTableAdapter pracownicyDataSetPracownicyTableAdapter = new WpfApp.PracownicyDataSetTableAdapters.PracownicyTableAdapter();
-            pracownicyDataSetPracownicyTableAdapter.Fill(pracownicyDataSet.Pracownicy);
-            ////
-        }
-
         private void BTNew_Click(object sender, RoutedEventArgs e)
         {
-            WpfApp.PracownicyDataSet pracownicyDataSet = ((WpfApp.PracownicyDataSet)(this.FindResource("pracownicyDataSet")));
-            pracownicyDataSet.Pracownicy.AddPracownicyRow(
-                imieTextBox.Text, nazwiskoTextBox.Text,
-                data_urodzeniaDatePicker.SelectedDate.Value.Date,
-                adresTextBox.Text,
-                pracownicyDataSet.Pracownicy[Int32.Parse(szef_IDTextBox.Text)],
-                Int32.Parse(dzial_IDTextBox.Text),
-                Int32.Parse(stanowisko_IDTextBox.Text),
-                Decimal.Parse(placaTextBox.Text));
-
-            MessageBox.Show("Poszlo");
 
         }
 
@@ -74,7 +53,8 @@ namespace WpfApp
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
-            new WorkerOfTheMonth();
+            WorkerOfTheMonth temp =  new WorkerOfTheMonth();
+            temp.FillStackPanel(candidatesStackPanel);
         }
     }
 }

@@ -9,14 +9,14 @@ namespace WpfApp.Model
 {
     class SupervisedNeuralLayer:NeuralLayer
     {
-        private List<Candidate> candidates;
+        
 
         public SupervisedNeuralLayer(String pathToFile) : base(pathToFile)
         {
             candidates = new List<Candidate>();
         }
 
-        public List<Candidate> AskPreNeuralForCandidate(DataTable dt)
+        public override List<Candidate> AskPreNeuralForCandidate(DataTable dt)
         {
             List<Candidate> candidatesTemp = new List<Candidate>();
             for (int i = 0; i < NeuralLayer.neuronNum; i++)
@@ -51,14 +51,9 @@ namespace WpfApp.Model
             return candidates;
         }
 
-        public String CandidatesToString()
+        public override void TeachPreNeural(Candidate candidate)
         {
-            String Test = "";
-            foreach (Candidate a in candidates)
-            {
-                Test += a.ToString() + "\n";
-            }
-            return Test;
+            this.mainLayer[candidate.GetNeuron()].DeltaRegule(candidate);
         }
     }
 }

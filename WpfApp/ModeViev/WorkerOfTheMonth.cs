@@ -6,15 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using WpfApp.Model;
+using WpfApp.Viev;
 
 namespace WpfApp.ModeViev
 {
     class WorkerOfTheMonth
     {
         private DataTable workersEwaluationData;
-        private SupervisedNeuralLayer supervisedNeuralNetwork;
+        private NeuralLayer supervisedNeuralNetwork;
         private NeuralLayer unsupervisedNeuralNetwork;
+
+        private List<Candidate> candidates = new List<Candidate>();
 
 
 
@@ -25,7 +29,12 @@ namespace WpfApp.ModeViev
             //Tworzenie sieci neuronowej
             LoadNeuralNetwork();
             //odpytywanie danych
-            
+            candidates = supervisedNeuralNetwork.AskPreNeuralForCandidate(workersEwaluationData);
+            unsupervisedNeuralNetwork.AskPreNeuralForCandidate(workersEwaluationData);
+            MessageBox.Show(
+                supervisedNeuralNetwork.ToString+
+                "\n"+
+                unsupervisedNeuralNetwork.ToString);
         }
 
         private DataTable LoadData()
@@ -44,8 +53,20 @@ namespace WpfApp.ModeViev
         public void LoadNeuralNetwork()
         {
             this.supervisedNeuralNetwork = new SupervisedNeuralLayer("supervisedNeuralBrain.txt");
-            this.unsupervisedNeuralNetwork = new NeuralLayer("unsupervisedNeuralBrain.txt");
+            this.unsupervisedNeuralNetwork = new UnsupervisedNeuralLayerNeuralLayer("unsupervisedNeuralBrain.txt");
         }
 
+        private void FillStackPanel(List<Candidate> listCandidates,StackPanel stackPanel)
+        {
+            foreach(Candidate toAdd in listCandidates)
+            {
+                stackPanel.Children.Add((new CandidateModelViev(toAdd)).candidateViev);
+            }
+        }
+
+        public void FillStackPanel(StackPanel stackPanel)
+        {
+            FillStackPanel(candidates,stackPanel);
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace WpfApp.Model
 {
-    class Worker
+    public class Worker
     {
         public static int parameters {
             get {
@@ -19,8 +19,8 @@ namespace WpfApp.Model
             get;
             private set;
         }
-        protected string Imie;
-        protected string Nazwisko;
+        public string Imie;
+        public string Nazwisko;
         public Double[] oceny = new Double[parameters];
 
         public Worker(DataRow dataRow)
