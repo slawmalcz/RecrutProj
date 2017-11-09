@@ -14,14 +14,22 @@ namespace WpfApp.ModeViev
 {
     class WorkerOfTheMonth
     {
+        /// This class is a bridge betwean NeuronNetwork and
+        /// functionality of app
+
+
+        // FIELDS
         private DataTable workersEwaluationData;
         private NeuralLayer supervisedNeuralNetwork;
         private NeuralLayer unsupervisedNeuralNetwork;
-
+        private Candidate superviverChoosen;
+        private Candidate unsupervisedChoosen;
         private List<Candidate> candidates = new List<Candidate>();
 
-        private static WorkerOfTheMonth instance;
+        // SINGLETON IMPLEMENTATION
+        //Only one allowed for compiuting power ristriction 
 
+        private static WorkerOfTheMonth instance;
         public static WorkerOfTheMonth getInstance()
         {
             if (instance == null)
@@ -32,6 +40,10 @@ namespace WpfApp.ModeViev
 
         }
 
+        // CONSTRUCTOR
+        /// <summary>
+        /// Main constructor for Worker Of The Month Class
+        /// </summary>
         private WorkerOfTheMonth()
         {
             //Ladowanie danuch do tabeli
@@ -43,11 +55,21 @@ namespace WpfApp.ModeViev
             unsupervisedChoosen =  unsupervisedNeuralNetwork.AskPreNeuralForCandidate(workersEwaluationData)[0];
         }
 
+        // METHODS AND FUNCTIONS
+
+        /// <summary>
+        /// Ask NeuronNetwork for final candidate
+        /// </summary>
+        /// <returns>Ultimate Worker Of The Month</returns>
         public Candidate getWorkerOfTheMonth()
         {
             return new FinalNeuron(superviverChoosen.oceny, unsupervisedChoosen.oceny).AskPreNeuralForCandidate(this.LoadData());
         }
 
+        /// <summary>
+        /// Loads Data from database to data table containing workers
+        /// </summary>
+        /// <returns>DataTables of Workers</returns>
         private DataTable LoadData()
         {
             SqlDataAdapter da = new SqlDataAdapter();
@@ -61,13 +83,21 @@ namespace WpfApp.ModeViev
             return dt;
         }
 
+        /// <summary>
+        /// Loads weights to layers of neural network
+        /// </summary>
         public void LoadNeuralNetwork()
         {
             this.supervisedNeuralNetwork = new SupervisedNeuralLayer("supervisedNeuralBrain.txt");
             this.unsupervisedNeuralNetwork = new UnsupervisedNeuralLayerNeuralLayer("unsupervisedNeuralBrain.txt");
         }
 
-        private List<UserControl> FillStackPanel(List<Candidate> listCandidates)
+        /// <summary>
+        /// Generates User controll from given Candidates
+        /// </summary>
+        /// <param name="listCandidates">Candidate of Supervised Network</param>
+        /// <returns>List of UserControl for candidate</returns>
+        private List<UserControl> GetUserControlCandidates(List<Candidate> listCandidates)
         {
             List<UserControl> tempList = new List<UserControl>();
             foreach(Candidate toAdd in listCandidates)
@@ -77,23 +107,23 @@ namespace WpfApp.ModeViev
             return tempList;
         }
 
-        public List<UserControl> FillStackPanel()
+        /// <summary>
+        /// Passes request to GetUserControlCandidates(List<Candidate> listCandidates) function
+        /// </summary>
+        /// <returns>List of UserControl for candidate</returns>
+        public List<UserControl> GetUserControlCandidates()
         {
-            return FillStackPanel(candidates);
+            return GetUserControlCandidates(candidates);
         }
 
-        // COŚ tam dalej
-
-        private Candidate superviverChoosen;
-        private Candidate unsupervisedChoosen;
-
+        /// <summary>
+        /// Set one of the dandidates as chooden by supervisor
+        /// </summary>
+        /// <param name="candidate">Choosen Candidate</param>
         public void setSupervisorChoosen(Candidate candidate)
         {
             this.superviverChoosen = candidate;
             supervisedNeuralNetwork.TeachPreNeural(candidate);
-            MessageBox.Show("I get :" + candidate.ToString());
-            //this.stackPanel.Children.Clear();
-
         }
     }
 }

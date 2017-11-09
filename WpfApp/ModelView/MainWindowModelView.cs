@@ -39,7 +39,7 @@ namespace WpfApp.ModeViev
         public MainWindowModelView()
         {
             AskNeural = new RelayCommand(pars => GenerateOutput());
-            PossibleCandidates =  WorkerOfTheMonth.getInstance().FillStackPanel();
+            PossibleCandidates =  WorkerOfTheMonth.getInstance().GetUserControlCandidates();
         }
 
         // METHODS ADS FUNCTIONS
@@ -49,6 +49,7 @@ namespace WpfApp.ModeViev
         public void GenerateOutput()
         {
             MessageBox.Show(WorkerOfTheMonth.getInstance().getWorkerOfTheMonth().ToString());
+            // To Add View and post to database 
         }
 
         virtual protected void OnPropertyChanged(String propName)
