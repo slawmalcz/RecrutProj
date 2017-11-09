@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApp.Model
 {
     public class Candidate:Worker
     {
+        /// FIELDS
+
+        /// <summary>
+        /// Initializing Fields for genereting Candidate
+        /// </summary>
         private double output=0;
-        private int Neuron=0;
+        /// <summary>
+        /// Colection of Strings used for generating toString()
+        /// </summary>
         private String[] ConcatenatingString = 
         {
             "Ocena ilosci projektow",
@@ -22,18 +24,36 @@ namespace WpfApp.Model
             "Poprawnosc kodu"
         };
 
+        ///PROPERTIES
+
+        /// <summary>
+        /// Number of neuron witch choose this worker
+        /// </summary>
+        public int Neuron {
+            get;
+            private set;
+        }
+
+        /// CONSTRUCTORS
+
+        /// <summary>
+        /// Constructor for Candidate class
+        /// </summary>
+        /// <param name="worker">Worker witch has beed choosen to become candidate</param>
+        /// <param name="output">Output for neuron witch choose this worker</param>
+        /// <param name="neuron">Number of neuron witch choose this worker</param>
         public Candidate(Worker worker,double output,int neuron) : base(worker)
         {
-            this.output = output;
+           this.output = output;
             this.Neuron = neuron;
         }
 
-        public void FillCandidate(int Neuron, double output)
-        {
-            this.Neuron = Neuron;
-            this.output = output;
-        }
+        /// METHODS AND FUNCTIONS
 
+        /// <summary>
+        /// Generate Short Description of instance state
+        /// </summary>
+        /// <returns>Instance value state</returns>
         public new String ToString()
         {
             return "" +
@@ -44,11 +64,10 @@ namespace WpfApp.Model
                 "Output = "+ this.output;
         }
 
-        public int GetNeuron()
-        {
-            return Neuron;
-        }
-
+        /// <summary>
+        /// Generate long Description of instance state .Used for recomendation
+        /// </summary>
+        /// <returns></returns>
         public String PrintOutputForView()
         {
             String output =
@@ -65,6 +84,5 @@ namespace WpfApp.Model
             output += "Rekomendowany za: "+ ConcatenatingString[Maxint];
             return output;
         }
-
     }
 }

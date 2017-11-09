@@ -10,21 +10,42 @@ namespace WpfApp.Model
 {
     public class Worker
     {
+        /// PROPERTIES
+
+        /// <summary>
+        /// Numbers of atributes of worker
+        /// </summary>
         public static int parameters {
             get {
-                return 7;
+                return parameters;
+            }
+            private set {
+                parameters = value;
             }
         }
+        /// <summary>
+        /// Identificator of worker
+        /// </summary>
         public int ID {
             get;
             private set;
         }
+
+        /// FIELDS
+
         public string Imie;
         public string Nazwisko;
         public Double[] oceny = new Double[parameters];
 
+        ///CONSTRUCTOR
+
+        /// <summary>
+        /// Basic construcor for Worker
+        /// </summary>
+        /// <param name="dataRow">Data Row containing info about Worker</param>
         public Worker(DataRow dataRow)
         {
+            parameters = 7;
             this.ID = Int32.Parse(dataRow["ID"].ToString());
             this.Imie = dataRow["Imie"].ToString();
             this.Nazwisko = dataRow["Nazwisko"].ToString();
@@ -36,6 +57,11 @@ namespace WpfApp.Model
             this.oceny[5] = Int32.Parse(dataRow["Spoznienia"].ToString());
             this.oceny[6] = Int32.Parse(dataRow["Blendow_w_kodzie"].ToString());
         }
+        /// <summary>
+        /// Secondary constructor using egzisting worker for creatin new one.
+        /// Used in childern class
+        /// </summary>
+        /// <param name="worker"></param>
         protected Worker(Worker worker)
         {
             this.ID = worker.ID;
@@ -44,6 +70,12 @@ namespace WpfApp.Model
             this.oceny = worker.oceny;
         }
 
+        ///METHODS AND FUNCTIONS
+
+        /// <summary>
+        /// Short description of Worker
+        /// </summary>
+        /// <returns>Description of Worker</returns>
         public new String ToString()
         {
             return "" +

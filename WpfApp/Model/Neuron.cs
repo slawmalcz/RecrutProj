@@ -1,18 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace WpfApp.Model
 {
-    class CasificationNeuron
+    class Neuron
     {
-        private const double accelerationRate = 0.1; 
+        ///FIELDS
+
+        /// <summary>
+        /// Constant number telling how fast neural network shoud learn
+        /// </summary>
+        private const double accelerationRate = 0.1;
+        /// <summary>
+        /// Weight matrix
+        /// </summary>
         private Double[] weight;
 
-        public CasificationNeuron()
+       ///CONSTRUCTORS 
+       
+       /// <summary>
+       /// Generating new neuron with random rate from range -1 to 1
+       /// </summary>
+       public Neuron()
         {
             System.Threading.Thread.Sleep(20);
             weight = new Double[Worker.parameters];
@@ -23,11 +31,22 @@ namespace WpfApp.Model
             }
         }
 
-        public CasificationNeuron(double[] sendToNeuron)
+        /// <summary>
+        /// Generating new neuron with known weight
+        /// </summary>
+        /// <param name="sendToNeuron">Array of new weight wector</param>
+        public Neuron(double[] sendToNeuron)
         {
             this.weight = sendToNeuron;
         }
 
+        ///METHODS AND FUNCTIONS
+
+        /// <summary>
+        /// Calculate output for neural network
+        /// </summary>
+        /// <param name="worker">Worker for witch neuron output will be created</param>
+        /// <returns>Double neuron</returns>
         public double generateOutput(Worker worker)
         {
             double output = 0;
@@ -37,7 +56,10 @@ namespace WpfApp.Model
             }
             return output;
         }
-
+        /// <summary>
+        /// Initiate delta learning model for neuron
+        /// </summary>
+        /// <param name="worker">Worker witch'll have influence on lerning</param>
         public void DeltaRegule(Worker worker)
         {
             for(int i = 0; i < Worker.parameters; i++)
@@ -45,7 +67,10 @@ namespace WpfApp.Model
                 weight[i] = weight[i] + (accelerationRate * (worker.oceny[i] - weight[i]));
             }
         }
-
+        /// <summary>
+        /// Simple to string method for printing weight
+        /// </summary>
+        /// <returns>Detalis of Weight String</returns
         public string generateWeightView()
         {
             string output = "";

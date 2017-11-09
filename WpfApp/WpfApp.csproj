@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Candidate.cs" />
-    <Compile Include="Model\CasificationNeuron.cs" />
+    <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\NeuralLayer.cs" />
     <Compile Include="Model\SupervisedNeuralLayer.cs" />
     <Compile Include="Model\UnsupervisedNeuralLayer.cs" />

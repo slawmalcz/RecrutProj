@@ -12,13 +12,31 @@ namespace WpfApp.Model
 {
     abstract class NeuralLayer
     {
+        ///FIELDS
+
+        /// <summary>
+        /// Constant value defining number of neurons
+        /// </summary>
         public static int neuronNum = 5;
-        protected CasificationNeuron[] mainLayer = new CasificationNeuron[neuronNum];
+        /// <summary>
+        /// Main neural layer containin all neurons
+        /// </summary>
+        protected Neuron[] mainLayer = new Neuron[neuronNum];
+
+        ///PROPERITES
+
+        /// <summary>
+        /// List of candidates selected by neurons in neural layer
+        /// </summary>
         public List<Candidate> candidates {
             get;
             protected set;
         }
 
+        /// <summary>
+        /// Main constructor for all neural layer, with saving data to file named like the parameter or read data.
+        /// </summary>
+        /// <param name="initiateFileName">File name to save instance or read</param>
         public NeuralLayer(String initiateFileName)
         {
             string directory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -28,7 +46,7 @@ namespace WpfApp.Model
                 {
                     for (int i = 0; i < neuronNum; i++)
                     {
-                        mainLayer[i] = new CasificationNeuron();
+                        mainLayer[i] = new Neuron();
                         writetext.WriteLine(mainLayer[i].generateWeightView());
                     }
                 }
@@ -45,20 +63,15 @@ namespace WpfApp.Model
                         {
                             sendToNeuron[j] = Double.Parse(readMeText[j]);
                         }
-                        mainLayer[i] = new CasificationNeuron(sendToNeuron);
+                        mainLayer[i] = new Neuron(sendToNeuron);
                     }
                 }
             }
 
         }
-
-        protected abstract void saveProgres();
-
-        protected CasificationNeuron GetNeuron(int index)
-        {
-            return mainLayer[index];
-        }
-
+        /// <summary>
+        /// Generate short description for layer
+        /// </summary>
         public new String ToString {
             get {
                 String Test = "";
@@ -69,8 +82,21 @@ namespace WpfApp.Model
                 return Test;
             }
         }
+        /// <summary>
+        /// Function for extracting neurons from layer
+        /// </summary>
+        /// <param name="index">Inex number of neuron</param>
+        /// <returns>Requested Neuron</returns>
+        protected Neuron GetNeuron(int index)
+        {
+            return mainLayer[index];
+        }
+
+
+        /// ABSTRACT METHOD AND FUNCTION
 
         public abstract List<Candidate> AskPreNeuralForCandidate(DataTable dt);
         public abstract void TeachPreNeural(Candidate candidate);
+        protected abstract void saveProgres();
     }
 }
