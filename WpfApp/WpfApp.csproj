@@ -71,8 +71,8 @@
     </ApplicationDefinition>
     <Compile Include="Model\FinalNeuron.cs" />
     <Compile Include="Model\RelayCommand.cs" />
-    <Compile Include="ModeViev\CandidatePreviewModel.cs" />
-    <Compile Include="ModeViev\MainWindowModelViev.cs" />
+    <Compile Include="ModelView\CandidatePreviewModel.cs" />
+    <Compile Include="ModelView\MainWindowModelViev.cs" />
     <Compile Include="Viev\CandidateViev.xaml.cs">
       <DependentUpon>CandidateViev.xaml</DependentUpon>
     </Compile>
@@ -100,7 +100,7 @@
     <Compile Include="Model\SupervisedNeuralLayer.cs" />
     <Compile Include="Model\UnsupervisedNeuralLayer.cs" />
     <Compile Include="Model\Worker.cs" />
-    <Compile Include="ModeViev\WorkerOfTheMonth.cs" />
+    <Compile Include="ModelView\WorkerOfTheMonth.cs" />
     <Compile Include="PracownicyDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
