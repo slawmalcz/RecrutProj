@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="825">
     <Grid>
-        <Button Content="New" HorizontalAlignment="Left" Margin="10,589,0,0" VerticalAlignment="Top" Width="75" Name="BTNew" Click="BTNew_Click"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top" Width="75" Name="BTSave" Click="BTSave_Click"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="10,639,0,0" VerticalAlignment="Top" Width="75" Name="BTDelete" Click="BTDelete_Click"/>
-        <StackPanel HorizontalAlignment="Left" Height="574" Margin="10,10,0,0" VerticalAlignment="Top" Width="797" Name="candidatesStackPanel"/>
+        <Button Content="New" HorizontalAlignment="Left" Margin="10,589,0,0" VerticalAlignment="Top" Width="75" Name="BTNew" Command="{Binding AskNeural}"/>
+        <StackPanel HorizontalAlignment="Left" Height="574" Margin="10,10,0,0" VerticalAlignment="Top" Width="797" Name="candidatesStackPanel">
+            <ItemsControl ItemsSource="{Binding PossibleCandidates}">
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </Window>

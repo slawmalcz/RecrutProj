@@ -27,7 +27,7 @@ class CandidatePreviewModel : INotifyPropertyChanged
     public void ChooseCandidate()
     {
         MessageBox.Show("Wybrano tego kolesia " + _CandidateInfo.PrintOutputForView());
-        //WorkerOfTheMonth.getInstance().setSupervisorChoosen(_CandidateInfo);
+        WorkerOfTheMonth.getInstance().setSupervisorChoosen(_CandidateInfo);
     }
 
     virtual protected void OnPropertyChanged(String propName)

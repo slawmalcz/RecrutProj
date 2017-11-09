@@ -72,6 +72,7 @@
     <Compile Include="Model\FinalNeuron.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="ModeViev\CandidatePreviewModel.cs" />
+    <Compile Include="ModeViev\MainWindowModelViev.cs" />
     <Compile Include="Viev\CandidateViev.xaml.cs">
       <DependentUpon>CandidateViev.xaml</DependentUpon>
     </Compile>

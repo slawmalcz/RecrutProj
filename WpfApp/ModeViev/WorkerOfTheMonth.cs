@@ -19,34 +19,21 @@ namespace WpfApp.ModeViev
         private NeuralLayer unsupervisedNeuralNetwork;
 
         private List<Candidate> candidates = new List<Candidate>();
-        private StackPanel stackPanel;
 
         private static WorkerOfTheMonth instance;
 
-        public static WorkerOfTheMonth getInstance(MainWindow mainWindow)
+        public static WorkerOfTheMonth getInstance()
         {
             if (instance == null)
             {
-                instance = new WorkerOfTheMonth(mainWindow);
+                instance = new WorkerOfTheMonth();
             }
             return instance;
 
         }
-        public static WorkerOfTheMonth getInstance()
-        {
-            return instance;
-        }
 
-        private WorkerOfTheMonth(MainWindow mainWindow)
+        private WorkerOfTheMonth()
         {
-            try
-            {
-                stackPanel = mainWindow.candidatesStackPanel;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
             //Ladowanie danuch do tabeli
             workersEwaluationData = LoadData();
             //Tworzenie sieci neuronowej
@@ -80,17 +67,19 @@ namespace WpfApp.ModeViev
             this.unsupervisedNeuralNetwork = new UnsupervisedNeuralLayerNeuralLayer("unsupervisedNeuralBrain.txt");
         }
 
-        private void FillStackPanel(List<Candidate> listCandidates,StackPanel stackPanel)
+        private List<UserControl> FillStackPanel(List<Candidate> listCandidates)
         {
+            List<UserControl> tempList = new List<UserControl>();
             foreach(Candidate toAdd in listCandidates)
             {
-                stackPanel.Children.Add(new CandidateViev(toAdd));
+                tempList.Add(new CandidateViev(toAdd));
             }
+            return tempList;
         }
 
-        public void FillStackPanel(StackPanel stackPanel)
+        public List<UserControl> FillStackPanel()
         {
-            FillStackPanel(candidates,stackPanel);
+            return FillStackPanel(candidates);
         }
 
         // COŚ tam dalej
@@ -103,7 +92,7 @@ namespace WpfApp.ModeViev
             this.superviverChoosen = candidate;
             supervisedNeuralNetwork.TeachPreNeural(candidate);
             MessageBox.Show("I get :" + candidate.ToString());
-            this.stackPanel.Children.Clear();
+            //this.stackPanel.Children.Clear();
 
         }
     }
