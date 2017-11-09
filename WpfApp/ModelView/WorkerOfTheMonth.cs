@@ -72,7 +72,7 @@ namespace WpfApp.ModeViev
             List<UserControl> tempList = new List<UserControl>();
             foreach(Candidate toAdd in listCandidates)
             {
-                tempList.Add(new CandidateViev(toAdd));
+                tempList.Add(new CandidateView(toAdd));
             }
             return tempList;
         }

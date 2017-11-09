@@ -12,16 +12,14 @@ namespace WpfApp.ModeViev
 {
     class MainWindowModelView : INotifyPropertyChanged
     {
-        public MainWindowModelView()
-        {
-            AskNeural = new RelayCommand(pars => GenerateOutput());
-            PossibleCandidates =  WorkerOfTheMonth.getInstance().FillStackPanel();
-        }
+        // FIELDS
 
         public event PropertyChangedEventHandler PropertyChanged = null;
-        public ICommand AskNeural { get; set; }
-
         private List<UserControl> _PossibleCandidates;
+
+        // PROPERTIES
+
+        public ICommand AskNeural { get; set; }
         public List<UserControl> PossibleCandidates {
             get {
                 return _PossibleCandidates; ;
@@ -33,6 +31,21 @@ namespace WpfApp.ModeViev
             }
         }
 
+        //CONSTRUCTOR
+
+        /// <summary>
+        /// Main constructor for MainWindow
+        /// </summary>
+        public MainWindowModelView()
+        {
+            AskNeural = new RelayCommand(pars => GenerateOutput());
+            PossibleCandidates =  WorkerOfTheMonth.getInstance().FillStackPanel();
+        }
+
+        // METHODS ADS FUNCTIONS
+        /// <summary>
+        /// Ask for final candidate of NeuronNetwork
+        /// </summary>
         public void GenerateOutput()
         {
             MessageBox.Show(WorkerOfTheMonth.getInstance().getWorkerOfTheMonth().ToString());

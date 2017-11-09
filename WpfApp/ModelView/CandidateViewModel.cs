@@ -8,6 +8,23 @@ using WpfApp.ModeViev;
 
 class CandidatePreviewModel : INotifyPropertyChanged
 {
+
+    /// FIELDS
+
+    public event PropertyChangedEventHandler PropertyChanged = null;
+    private Candidate _CandidateInfo;
+
+    /// Properties
+
+    public ICommand ChooseCmd { get; set; }
+    public String CandidateInfo { get; set; }
+
+    /// CONSTRUCTORS
+
+    /// <summary>
+    /// Main Constructor for CandidateModelView
+    /// </summary>
+    /// <param name="candidate">Candidate to show in Viev</param>
     public CandidatePreviewModel(Candidate candidate)
     {
         this._CandidateInfo = candidate;
@@ -15,12 +32,11 @@ class CandidatePreviewModel : INotifyPropertyChanged
         ChooseCmd = new RelayCommand(pars => ChooseCandidate());
     }
 
-    public event PropertyChangedEventHandler PropertyChanged = null;
-    public ICommand ChooseCmd { get; set; }
-
-    private Candidate _CandidateInfo;
-    public String CandidateInfo { get; set; }
-
+    ///FUNCTIONS AND METHODS
+    
+    /// <summary>
+    /// Passing candidate as Choosen to NeuralNetwork
+    /// </summary>
     public void ChooseCandidate()
     {
         MessageBox.Show("Wybrano tego kolesia " + _CandidateInfo.PrintOutputForView());

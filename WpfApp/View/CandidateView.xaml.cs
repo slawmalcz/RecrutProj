@@ -17,11 +17,11 @@ using WpfApp.Model;
 namespace WpfApp.View
 {
     /// <summary>
-    /// Interaction logic for CandidateViev.xaml
+    /// Interaction logic for CandidateView.xaml
     /// </summary>
-    public partial class CandidateViev : UserControl
+    public partial class CandidateView : UserControl
     {
-        public CandidateViev(Candidate candidate)
+        public CandidateView(Candidate candidate)
         {
             InitializeComponent();
             this.DataContext = new CandidatePreviewModel(candidate);
