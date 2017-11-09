@@ -40,14 +40,6 @@ namespace WpfApp.Viev {
     /// </summary>
     public partial class CandidatePreviev : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
-        
-        #line 12 "..\..\..\Viev\CandidatePreviev.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.ListBox ListTable;
-        
-        #line default
-        #line hidden
-        
         private bool _contentLoaded;
         
         /// <summary>
@@ -85,9 +77,6 @@ namespace WpfApp.Viev {
             
             #line default
             #line hidden
-            return;
-            case 2:
-            this.ListTable = ((System.Windows.Controls.ListBox)(target));
             return;
             }
             this._contentLoaded = true;

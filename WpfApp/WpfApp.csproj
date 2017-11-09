@@ -70,9 +70,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FinalNeuron.cs" />
-    <Compile Include="ModeViev\CandidateModelViev.cs" />
-    <Compile Include="Viev\CandidatePreviev.xaml.cs">
-      <DependentUpon>CandidatePreviev.xaml</DependentUpon>
+    <Compile Include="Model\RelayCommand.cs" />
+    <Compile Include="ModeViev\CandidatePreviewModel.cs" />
+    <Compile Include="Viev\CandidateViev.xaml.cs">
+      <DependentUpon>CandidateViev.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -86,7 +87,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Viev\CandidatePreviev.xaml">
+    <Page Include="Viev\CandidateViev.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

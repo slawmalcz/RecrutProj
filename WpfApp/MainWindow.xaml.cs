@@ -24,8 +24,6 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        WorkerOfTheMonth temp;
-
         public MainWindow()
         {
             InitializeComponent();

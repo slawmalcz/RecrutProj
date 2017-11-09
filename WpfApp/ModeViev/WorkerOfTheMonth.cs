@@ -84,7 +84,7 @@ namespace WpfApp.ModeViev
         {
             foreach(Candidate toAdd in listCandidates)
             {
-                stackPanel.Children.Add((new CandidateModelViev(toAdd)).candidateViev);
+                stackPanel.Children.Add(new CandidateViev(toAdd));
             }
         }
 
