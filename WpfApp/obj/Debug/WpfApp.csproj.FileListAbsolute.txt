@@ -16,5 +16,5 @@ C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\obj\Debug\WpfApp_MarkupCompile
 C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\bin\Debug\MyDatabase.mdf
 C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\bin\Debug\MyDatabase_log.ldf
 C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\obj\Debug\WpfApp_Content.g.cs
-C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\obj\Debug\Viev\CandidateViev.g.cs
-C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\obj\Debug\Viev\CandidateViev.baml
+C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\obj\Debug\View\CandidateView.g.cs
+C:\Users\Mindi\Desktop\PracProj\RecrutProj\WpfApp\obj\Debug\View\CandidateView.baml

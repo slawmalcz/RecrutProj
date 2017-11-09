@@ -12,10 +12,7 @@ namespace WpfApp.Model
         /// </summary>
         public static int parameters {
             get {
-                return parameters;
-            }
-            private set {
-                parameters = value;
+                return 7;
             }
         }
         /// <summary>
@@ -40,7 +37,6 @@ namespace WpfApp.Model
         /// <param name="dataRow">Data Row containing info about Worker</param>
         public Worker(DataRow dataRow)
         {
-            parameters = 7;
             this.ID = Int32.Parse(dataRow["ID"].ToString());
             this.Imie = dataRow["Imie"].ToString();
             this.Nazwisko = dataRow["Nazwisko"].ToString();

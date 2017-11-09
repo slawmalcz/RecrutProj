@@ -27,7 +27,7 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowModelViev();
+            this.DataContext = new MainWindowModelView();
         }
     }
 }

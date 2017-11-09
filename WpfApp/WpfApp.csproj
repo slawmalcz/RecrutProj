@@ -71,10 +71,10 @@
     </ApplicationDefinition>
     <Compile Include="Model\FinalNeuron.cs" />
     <Compile Include="Model\RelayCommand.cs" />
-    <Compile Include="ModelView\CandidatePreviewModel.cs" />
-    <Compile Include="ModelView\MainWindowModelViev.cs" />
-    <Compile Include="Viev\CandidateViev.xaml.cs">
-      <DependentUpon>CandidateViev.xaml</DependentUpon>
+    <Compile Include="ModelView\CandidateViewModel.cs" />
+    <Compile Include="ModelView\MainWindowModelView.cs" />
+    <Compile Include="View\CandidateView.xaml.cs">
+      <DependentUpon>CandidateView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -88,7 +88,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Viev\CandidateViev.xaml">
+    <Page Include="View\CandidateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,11 +101,6 @@
     <Compile Include="Model\UnsupervisedNeuralLayer.cs" />
     <Compile Include="Model\Worker.cs" />
     <Compile Include="ModelView\WorkerOfTheMonth.cs" />
-    <Compile Include="PracownicyDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PracownicyDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -123,17 +118,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="PracownicyDataSet.xsc">
-      <DependentUpon>PracownicyDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="PracownicyDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PracownicyDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PracownicyDataSet.xss">
-      <DependentUpon>PracownicyDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
